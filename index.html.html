@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Lucas Braga Scudeler — Dev Portfolio</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#0d0d0f;color:#e2e2e5;min-height:100vh}
+a{color:inherit;text-decoration:none}
+
+nav{position:sticky;top:0;background:rgba(13,13,15,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #1e1e24;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:54px;z-index:200}
+.logo{font-size:15px;font-weight:700;color:#7c6af7;font-family:'Courier New',monospace}
+.logo span{color:#e2e2e5}
+nav ul{display:flex;gap:1.5rem;list-style:none}
+nav ul a{font-size:13px;color:#666;transition:color .2s}
+nav ul a:hover{color:#e2e2e5}
+.nav-cta{background:#7c6af7;color:#fff !important;padding:5px 14px;border-radius:6px}
+.nav-cta:hover{background:#6556e0 !important}
+
+.hero{padding:5rem 2rem 3rem;max-width:820px;margin:0 auto}
+.hero-tag{display:inline-block;font-size:11px;color:#7c6af7;border:1px solid #2e2a52;border-radius:20px;padding:4px 14px;margin-bottom:1.5rem;letter-spacing:.06em;font-family:'Courier New',monospace}
+.hero h1{font-size:clamp(1.8rem,4vw,3rem);font-weight:800;line-height:1.15;color:#f0f0f5;margin-bottom:1rem}
+.hero h1 em{font-style:normal;color:#7c6af7}
+.hero p{font-size:15px;color:#777;line-height:1.8;max-width:500px;margin-bottom:2rem}
+.hero-btns{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn-primary{background:#7c6af7;color:#fff;padding:10px 22px;border-radius:8px;font-size:13px;cursor:pointer;border:none;transition:background .2s,transform .15s;font-family:'Segoe UI',system-ui,sans-serif}
+.btn-primary:hover{background:#6556e0;transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:#e2e2e5;padding:10px 22px;border-radius:8px;font-size:13px;cursor:pointer;border:1px solid #2a2a32;transition:border-color .2s,transform .15s;font-family:'Segoe UI',system-ui,sans-serif}
+.btn-ghost:hover{border-color:#7c6af7;transform:translateY(-1px)}
+
+.stack-row{max-width:820px;margin:0 auto;padding:0 2rem 3rem;display:flex;gap:8px;flex-wrap:wrap}
+.badge{font-size:11px;background:#18181f;border:1px solid #252530;color:#aaa;border-radius:6px;padding:4px 10px;font-family:'Courier New',monospace;transition:border-color .2s,color .2s}
+.badge:hover{border-color:#7c6af7;color:#c4b8ff}
+
+.section-label{max-width:820px;margin:0 auto;padding:0 2rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.section-label span{font-size:11px;color:#7c6af7;letter-spacing:.1em;font-family:'Courier New',monospace;white-space:nowrap}
+.section-label hr{flex:1;border:none;border-top:1px solid #1e1e24}
+
+.projects-grid{max-width:820px;margin:0 auto;padding:0 2rem 4rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem}
+
+.project-card{background:#111116;border:1px solid #1e1e26;border-radius:12px;overflow:hidden;cursor:pointer;transition:border-color .2s,transform .2s;display:flex;flex-direction:column}
+.project-card:hover{border-color:#7c6af7;transform:translateY(-3px)}
+.project-thumb{height:140px;background:#18181f;display:flex;align-items:center;justify-content:center;font-size:52px;border-bottom:1px solid #1a1a22;position:relative}
+.project-thumb .gif-badge{position:absolute;top:8px;right:8px;font-size:9px;background:#1a1a22;border:1px solid #2a2a32;color:#666;border-radius:4px;padding:2px 6px;font-family:'Courier New',monospace}
+.project-body{padding:1rem;flex:1;display:flex;flex-direction:column;gap:.5rem}
+.project-body h3{font-size:14px;font-weight:600;color:#f0f0f5}
+.project-body p{font-size:12px;color:#555;line-height:1.65;flex:1}
+.project-footer{display:flex;align-items:center;justify-content:space-between;margin-top:.5rem}
+.project-tags{display:flex;gap:4px;flex-wrap:wrap}
+.project-tag{font-size:10px;background:#1a1a22;color:#7c6af7;border-radius:4px;padding:2px 6px;font-family:'Courier New',monospace}
+.project-arrow{font-size:16px;color:#7c6af7;opacity:.6;transition:opacity .2s}
+.project-card:hover .project-arrow{opacity:1}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:500;align-items:center;justify-content:center;padding:1rem}
+.modal-overlay.open{display:flex}
+.modal{background:#111116;border:1px solid #2a2a32;border-radius:16px;width:100%;max-width:560px;overflow:hidden;animation:fadeUp .2s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.modal-preview{height:180px;background:#18181f;display:flex;align-items:center;justify-content:center;font-size:64px;border-bottom:1px solid #1a1a22;position:relative}
+.modal-close{position:absolute;top:12px;right:12px;background:#1a1a22;border:1px solid #252530;color:#888;width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:color .2s;font-family:sans-serif}
+.modal-close:hover{color:#fff}
+.modal-content{padding:1.5rem}
+.modal-content h2{font-size:17px;font-weight:700;color:#f0f0f5;margin-bottom:.5rem}
+.modal-desc{font-size:13px;color:#666;line-height:1.75;margin-bottom:1rem}
+.modal-meta{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.25rem}
+.meta-item{background:#18181f;border-radius:8px;padding:.75rem;border:1px solid #1e1e26}
+.meta-label{font-size:10px;color:#555;font-family:'Courier New',monospace;letter-spacing:.06em;margin-bottom:4px}
+.meta-val{font-size:13px;color:#c4b8ff}
+.modal-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.25rem}
+.modal-tag{font-size:11px;background:#1a1a22;color:#7c6af7;border-radius:4px;padding:3px 8px;font-family:'Courier New',monospace}
+.modal-actions{display:flex;gap:.75rem}
+.btn-github{background:#7c6af7;color:#fff;padding:10px 20px;border-radius:8px;font-size:13px;cursor:pointer;border:none;font-family:'Segoe UI',system-ui,sans-serif;transition:background .2s;flex:1;text-align:center;display:block}
+.btn-github:hover{background:#6556e0}
+.btn-tip{background:transparent;color:#444;padding:10px 16px;border-radius:8px;font-size:12px;border:1px solid #1e1e26;font-family:'Segoe UI',system-ui,sans-serif;flex:1;text-align:center}
+
+.contact-section{border-top:1px solid #1a1a22;padding:3rem 2rem;max-width:820px;margin:0 auto;text-align:center}
+.contact-section h2{font-size:1.4rem;color:#f0f0f5;margin-bottom:.5rem}
+.contact-section p{font-size:13px;color:#555;margin-bottom:1.5rem}
+.contact-links{display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap}
+
+footer{border-top:1px solid #151519;text-align:center;padding:1.25rem 2rem;font-size:11px;color:#333}
+footer span{color:#7c6af7}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">lucas<span>.dev</span></div>
+  <ul>
+    <li><a href="#inicio">início</a></li>
+    <li><a href="#projetos">projetos</a></li>
+    <li><a href="#contato" class="nav-cta">contato</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="inicio">
+  <div class="hero-tag">// disponível para projetos</div>
+  <h1>Olá, eu sou<br><em>Lucas Braga Scudeler</em> 👋</h1>
+  <p>Desenvolvedor Python apaixonado por resolver problemas reais com código limpo e bem estruturado.</p>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="document.getElementById('projetos').scrollIntoView({behavior:'smooth'})">Ver projetos ↓</button>
+    <a href="https://github.com/scudelerlucasb-a11y" target="_blank"><button class="btn-ghost">GitHub</button></a>
+  </div>
+</section>
+
+<div class="stack-row">
+  <span class="badge">Python</span>
+  <span class="badge">Lógica de Programação</span>
+  <span class="badge">Estruturas de Dados</span>
+  <span class="badge">Automação</span>
+  <span class="badge">Git</span>
+  <span class="badge">GitHub</span>
+</div>
+
+<div class="section-label" id="projetos">
+  <span>// projetos</span><hr>
+</div>
+
+<div class="projects-grid">
+
+  <div class="project-card" onclick="openModal(0)">
+    <div class="project-thumb">📋<span class="gif-badge">clique para ver</span></div>
+    <div class="project-body">
+      <h3>Lista de Tarefas</h3>
+      <p>Gerenciador de tarefas com criação, listagem e remoção.</p>
+      <div class="project-footer">
+        <div class="project-tags"><span class="project-tag">Python</span></div>
+        <span class="project-arrow">→</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-card" onclick="openModal(1)">
+    <div class="project-thumb">💬<span class="gif-badge">clique para ver</span></div>
+    <div class="project-body">
+      <h3>Contador de Vogais</h3>
+      <p>Script que conta vogais em strings — lógica e manipulação de texto.</p>
+      <div class="project-footer">
+        <div class="project-tags"><span class="project-tag">Python</span></div>
+        <span class="project-arrow">→</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-card" onclick="openModal(2)">
+    <div class="project-thumb">✂️<span class="gif-badge">clique para ver</span></div>
+    <div class="project-body">
+      <h3>Pedra, Papel e Tesoura</h3>
+      <p>Jogo clássico com lógica de decisão e estruturas de controle.</p>
+      <div class="project-footer">
+        <div class="project-tags"><span class="project-tag">Python</span></div>
+        <span class="project-arrow">→</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-preview">
+      <button class="modal-close" onclick="closeModalDirect()">✕</button>
+      <span id="modal-icon"></span>
+    </div>
+    <div class="modal-content">
+      <h2 id="modal-title"></h2>
+      <p class="modal-desc" id="modal-desc"></p>
+      <div class="modal-meta">
+        <div class="meta-item"><div class="meta-label">// status</div><div class="meta-val" id="modal-status"></div></div>
+        <div class="meta-item"><div class="meta-label">// linguagem</div><div class="meta-val" id="modal-type"></div></div>
+      </div>
+      <div class="modal-tags" id="modal-tags"></div>
+      <div class="modal-actions">
+        <a id="modal-github" href="#" class="btn-github" target="_blank">Ver no GitHub →</a>
+        <div class="btn-tip">💡 add um GIF no README!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="contact-section" id="contato">
+  <h2>Vamos trabalhar juntos?</h2>
+  <p>Aberto a freelas, oportunidades e colaborações.</p>
+  <div class="contact-links">
+    <a href="mailto:scudelerlucasb@gmail.com"><button class="btn-primary">✉ Mandar email</button></a>
+    <a href="https://github.com/scudelerlucasb-a11y" target="_blank"><button class="btn-ghost">GitHub</button></a>
+  </div>
+</div>
+
+<footer>feito com ☕ e muito <span>código</span> por Lucas Braga Scudeler</footer>
+
+<script>
+const projects = [
+  {
+    icon: '📋',
+    title: 'Lista de Tarefas',
+    desc: 'Gerenciador de tarefas em Python com operações de criação, listagem e remoção. Um projeto prático que demonstra o uso de listas, funções e controle de fluxo.',
+    status: '✅ Concluído',
+    type: 'Python',
+    tags: ['Python', 'Listas', 'Funções', 'CLI'],
+    github: 'https://github.com/scudelerlucasb-a11y/Lista-de-tarefas/'
+  },
+  {
+    icon: '💬',
+    title: 'Contador de Vogais',
+    desc: 'Script Python que conta vogais em strings — exercício de lógica e manipulação de texto. Demonstra o uso de loops, condicionais e manipulação de strings.',
+    status: '✅ Concluído',
+    type: 'Python',
+    tags: ['Python', 'Strings', 'Lógica', 'Loops'],
+    github: 'https://github.com/scudelerlucasb-a11y/contador-de-vogais/'
+  },
+  {
+    icon: '✂️',
+    title: 'Pedra, Papel e Tesoura',
+    desc: 'Jogo clássico em Python com lógica de decisão e estruturas de controle. O computador escolhe aleatoriamente e o jogo verifica o vencedor automaticamente.',
+    status: '✅ Concluído',
+    type: 'Python',
+    tags: ['Python', 'Random', 'Condicionais', 'Jogo'],
+    github: 'https://github.com/scudelerlucasb-a11y/Jogo-de-pedra-papel-e-tesoura/'
+  }
+];
+
+function openModal(i) {
+  const p = projects[i];
+  document.getElementById('modal-icon').textContent = p.icon;
+  document.getElementById('modal-title').textContent = p.title;
+  document.getElementById('modal-desc').textContent = p.desc;
+  document.getElementById('modal-status').textContent = p.status;
+  document.getElementById('modal-type').textContent = p.type;
+  document.getElementById('modal-github').href = p.github;
+  document.getElementById('modal-tags').innerHTML = p.tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal(e) { if (e.target.id === 'modal') closeModalDirect(); }
+function closeModalDirect() { document.getElementById('modal').classList.remove('open'); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
+</script>
+
+</body>
+</html>
