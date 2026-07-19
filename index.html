@@ -51,7 +51,7 @@ nav ul a:hover{color:#e2e2e5}
 .project-card:hover .project-arrow{opacity:1}
 
 .load-more-wrap{max-width:820px;margin:0 auto;padding:0 2rem 4rem;display:flex;justify-content:center}
-.btn-loadmore{background:#18181f;color:#c4b8ff;padding:11px 26px;border-radius:8px;font-size:13px;cursor:pointer;border:1px solid #2a2a32;transition:border-color .2s,transform .15s,background .2s;font-family:'Courier New',monospace;display:flex;align-items:center;gap:8px}
+.btn-loadmore{background:#18181f;color:#c4b8ff;padding:11px 26px;border-radius:8px;font-size:13px;cursor:pointer;border:1px solid #2a2a32;transition:border-color .2s,transform .15s,background .2s;font-family:'Courier New',monospace}
 .btn-loadmore:hover{border-color:#7c6af7;background:#1d1d26;transform:translateY(-1px)}
 
 /* MODAL */
@@ -112,6 +112,7 @@ footer span{color:#7c6af7}
   <span class="badge">Automação</span>
   <span class="badge">SQL</span>
   <span class="badge">Banco de Dados</span>
+  <span class="badge">C#</span>
   <span class="badge">Git</span>
   <span class="badge">GitHub</span>
 </div>
@@ -162,9 +163,7 @@ footer span{color:#7c6af7}
 
 <div class="load-more-wrap">
   <a href="https://github.com/scudelerlucasb-a11y?tab=repositories" target="_blank">
-    <button class="btn-loadmore">
-      <span class="loadmore-label">Ver mais projetos no GitHub →</span>
-    </button>
+    <button class="btn-loadmore">Ver mais projetos no GitHub →</button>
   </a>
 </div>
 
@@ -195,7 +194,7 @@ footer span{color:#7c6af7}
   <h2>Vamos trabalhar juntos?</h2>
   <p>Aberto a freelas, oportunidades e colaborações.</p>
   <div class="contact-links">
-    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=bragascudelerlucas@gmail.com" target="_blank"><button class="btn-primary">✉ bragascudelerlucas@gmail.com</button></a>
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=bragacudelerl@gmail.com" target="_blank"><button class="btn-primary">✉ bragacudelerl@gmail.com</button></a>
     <a href="https://github.com/scudelerlucasb-a11y" target="_blank"><button class="btn-ghost">GitHub</button></a>
   </div>
 </div>
@@ -247,7 +246,6 @@ function openModal(i) {
 function closeModal(e) { if (e.target.id === 'modal') closeModalDirect(); }
 function closeModalDirect() { document.getElementById('modal').classList.remove('open'); }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
-
 </script>
 
 </body>
