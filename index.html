@@ -1,300 +1,909 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Lucas Braga Scudeler — Dev Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucas Braga Scudeler — Estudante de Ciência da Computação | Portfólio</title>
+<meta name="description" content="Portfólio de Lucas Braga Scudeler, estudante de Ciência da Computação na Faculdade Impacta, em busca de estágio em Tecnologia com foco em Análise de Dados. Conhecimentos em Python, C#, SQL e Banco de Dados.">
+<meta name="author" content="Lucas Braga Scudeler">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-*, ::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0d0d0f; color: #e2e2e5; min-height: 100vh; }
-a { color: inherit; text-decoration: none; }
+  :root{
+    --bg: #F6F7F9;
+    --surface: #FFFFFF;
+    --ink: #10151B;
+    --muted: #5B6472;
+    --border: #E3E6EB;
+    --accent: #2F6F4E;
+    --accent-ink: #1F4F37;
+    --accent-soft: #E7F0EA;
+    --gold: #B8862F;
+    --gold-soft: #FBF2E1;
+    --code-bg: #10151B;
+    --code-ink: #E8EBEF;
+    --code-muted: #8B95A3;
+    --radius: 10px;
+    --maxw: 1080px;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
 
-nav { position: sticky; top: 0; background: rgba(13, 13, 15, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1e1e24; display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 54px; z-index: 200; }
-.logo { font-size: 15px; font-weight: 700; color: #7c6af7; font-family: 'Courier New', monospace; }
-.logo span { color: #e2e2e5; }
-nav ul { display: flex; gap: 1.5rem; list-style: none; }
-nav ul a { font-size: 13px; color: #888; transition: color .2s; }
-nav ul a:hover { color: #e2e2e5; }
-.nav-cta { background: #7c6af7; color: #fff !important; padding: 5px 14px; border-radius: 6px; font-weight: 600; }
-.nav-cta:hover { background: #6556e0 !important; }
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
 
-.hero { padding: 4rem 2rem 2.5rem; max-width: 820px; margin: 0 auto; }
-.hero-tag { display: inline-block; font-size: 11px; color: #7c6af7; border: 1px solid #2e2a52; border-radius: 20px; padding: 4px 14px; margin-bottom: 1.2rem; letter-spacing: .06em; font-family: 'Courier New', monospace; }
-.hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; line-height: 1.2; color: #f0f0f5; margin-bottom: 1rem; }
-.hero h1 em { font-style: normal; color: #7c6af7; }
-.hero p { font-size: 15px; color: #999; line-height: 1.7; max-width: 580px; margin-bottom: 1.8rem; }
-.hero-btns { display: flex; gap: .75rem; flex-wrap: wrap; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
 
-.btn-primary { background: #7c6af7; color: #fff; padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; transition: background .2s, transform .15s; display: inline-flex; align-items: center; gap: 6px; }
-.btn-primary:hover { background: #6556e0; transform: translateY(-1px); }
-.btn-ghost { background: transparent; color: #e2e2e5; padding: 10px 20px; border-radius: 8px; font-size: 13px; cursor: pointer; border: 1px solid #2a2a32; transition: border-color .2s, transform .15s; display: inline-flex; align-items: center; gap: 6px; }
-.btn-ghost:hover { border-color: #7c6af7; transform: translateY(-1px); }
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
 
-.about-card { max-width: 820px; margin: 0 auto 2.5rem; padding: 0 2rem; }
-.about-inner { background: #111116; border: 1px solid #1e1e26; border-radius: 12px; padding: 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-@media (max-width: 600px) { .about-inner { grid-template-columns: 1fr; } }
-.about-item h4 { font-size: 12px; color: #7c6af7; font-family: 'Courier New', monospace; margin-bottom: .4rem; text-transform: uppercase; letter-spacing: .05em; }
-.about-item p { font-size: 13px; color: #ccc; line-height: 1.5; }
+  img{ max-width:100%; display:block; }
 
-.stack-row { max-width: 820px; margin: 0 auto; padding: 0 2rem 2.5rem; display: flex; gap: 8px; flex-wrap: wrap; }
-.badge { font-size: 11px; background: #18181f; border: 1px solid #252530; color: #aaa; border-radius: 6px; padding: 5px 12px; font-family: 'Courier New', monospace; transition: border-color .2s, color .2s; }
-.badge:hover { border-color: #7c6af7; color: #c4b8ff; }
+  a{ color: inherit; }
 
-.section-label { max-width: 820px; margin: 0 auto; padding: 0 2rem 1.2rem; display: flex; align-items: center; gap: 1rem; }
-.section-label span { font-size: 11px; color: #7c6af7; letter-spacing: .1em; font-family: 'Courier New', monospace; white-space: nowrap; }
-.section-label hr { flex: 1; border: none; border-top: 1px solid #1e1e24; }
+  .wrap{
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
 
-.projects-grid { max-width: 820px; margin: 0 auto; padding: 0 2rem 2.5rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+  /* Focus visibility for accessibility */
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
 
-.project-card { background: #111116; border: 1px solid #1e1e26; border-radius: 12px; overflow: hidden; cursor: pointer; transition: border-color .2s, transform .2s; display: flex; flex-direction: column; }
-.project-card:hover { border-color: #7c6af7; transform: translateY(-3px); }
-.project-thumb { height: 120px; background: #18181f; display: flex; align-items: center; justify-content: center; font-size: 42px; border-bottom: 1px solid #1a1a22; position: relative; }
-.project-thumb .gif-badge { position: absolute; top: 8px; right: 8px; font-size: 9px; background: #1a1a22; border: 1px solid #2a2a32; color: #888; border-radius: 4px; padding: 2px 6px; font-family: 'Courier New', monospace; }
-.project-body { padding: 1.2rem; flex: 1; display: flex; flex-direction: column; gap: .5rem; }
-.project-body h3 { font-size: 14px; font-weight: 600; color: #f0f0f5; }
-.project-body p { font-size: 12px; color: #777; line-height: 1.6; flex: 1; }
-.project-footer { display: flex; align-items: center; justify-content: space-between; margin-top: .8rem; }
-.project-tags { display: flex; gap: 4px; flex-wrap: wrap; }
-.project-tag { font-size: 10px; background: #1a1a22; color: #7c6af7; border-radius: 4px; padding: 2px 6px; font-family: 'Courier New', monospace; }
-.project-arrow { font-size: 14px; color: #7c6af7; opacity: .6; transition: opacity .2s; }
-.project-card:hover .project-arrow { opacity: 1; }
+  .skip-link{
+    position:absolute; left:-9999px; top:0;
+    background: var(--accent); color:#fff; padding:10px 16px;
+    z-index: 999; border-radius: 0 0 6px 0;
+    font-family: var(--font-mono); font-size: 0.85rem;
+  }
+  .skip-link:focus{ left:0; }
 
-.cert-grid { max-width: 820px; margin: 0 auto; padding: 0 2rem 4rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 1rem; }
-@media (max-width: 500px) { .cert-grid { grid-template-columns: 1fr; } }
-.cert-card { background: #111116; border: 1px solid #1e1e26; border-radius: 10px; padding: 1.2rem; }
-.cert-card h3 { font-size: 14px; color: #f0f0f5; margin-bottom: 4px; }
-.cert-card .cert-issuer { font-size: 12px; color: #7c6af7; font-family: 'Courier New', monospace; margin-bottom: 8px; }
-.cert-card p { font-size: 12px; color: #888; line-height: 1.5; }
+  /* ---------- NAVBAR ---------- */
+  header.nav{
+    position: sticky; top:0; z-index: 100;
+    background: rgba(246,247,249,0.9);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner{
+    max-width: var(--maxw); margin: 0 auto; padding: 14px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{
+    font-family: var(--font-mono); font-weight:600; font-size: 0.95rem;
+    display:flex; align-items:center; gap:8px; text-decoration:none; color:var(--ink);
+  }
+  .brand .dot{ width:8px; height:8px; border-radius:50%; background: var(--accent); display:inline-block; }
+  nav.links{ display:flex; gap: 28px; align-items:center; }
+  nav.links a{
+    text-decoration:none; color: var(--muted); font-size: 0.92rem; font-weight:500;
+    transition: color .15s ease;
+  }
+  nav.links a:hover{ color: var(--ink); }
+  .nav-icons{ display:flex; gap:14px; align-items:center; }
+  .icon-btn{
+    display:flex; align-items:center; justify-content:center;
+    width:36px; height:36px; border-radius:8px;
+    border: 1px solid var(--border); background: var(--surface);
+    text-decoration:none; color: var(--ink);
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .icon-btn:hover{ border-color: var(--accent); transform: translateY(-1px); }
+  .nav-toggle{ display:none; }
 
-.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, .85); z-index: 500; align-items: center; justify-content: center; padding: 1rem; }
-.modal-overlay.open { display: flex; }
-.modal { background: #111116; border: 1px solid #2a2a32; border-radius: 16px; width: 100%; max-width: 560px; overflow: hidden; animation: fadeUp .2s ease; }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-.modal-preview { height: 150px; background: #18181f; display: flex; align-items: center; justify-content: center; font-size: 52px; border-bottom: 1px solid #1a1a22; position: relative; }
-.modal-close { position: absolute; top: 12px; right: 12px; background: #1a1a22; border: 1px solid #252530; color: #888; width: 28px; height: 28px; border-radius: 6px; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; transition: color .2s; }
-.modal-close:hover { color: #fff; }
-.modal-content { padding: 1.5rem; }
-.modal-content h2 { font-size: 17px; font-weight: 700; color: #f0f0f5; margin-bottom: .5rem; }
-.modal-desc { font-size: 13px; color: #888; line-height: 1.7; margin-bottom: 1rem; }
-.modal-meta { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin-bottom: 1.25rem; }
-.meta-item { background: #18181f; border-radius: 8px; padding: .75rem; border: 1px solid #1e1e26; }
-.meta-label { font-size: 10px; color: #666; font-family: 'Courier New', monospace; letter-spacing: .06em; margin-bottom: 4px; }
-.meta-val { font-size: 12px; color: #c4b8ff; }
-.modal-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.25rem; }
-.modal-tag { font-size: 10px; background: #1a1a22; color: #7c6af7; border-radius: 4px; padding: 3px 8px; font-family: 'Courier New', monospace; }
-.btn-github { background: #7c6af7; color: #fff; padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; transition: background .2s; text-align: center; display: block; width: 100%; }
-.btn-github:hover { background: #6556e0; }
+  @media (max-width: 760px){
+    nav.links{
+      position:absolute; top:100%; left:0; right:0;
+      flex-direction:column; align-items:flex-start; gap:0;
+      background: var(--surface); border-bottom:1px solid var(--border);
+      padding: 8px 24px; display:none;
+    }
+    nav.links.open{ display:flex; }
+    nav.links a{ padding: 12px 0; width:100%; border-bottom: 1px dashed var(--border); }
+    .nav-toggle{
+      display:flex; align-items:center; justify-content:center;
+      width:36px; height:36px; border-radius:8px; border:1px solid var(--border);
+      background: var(--surface); cursor:pointer;
+    }
+  }
 
-.contact-section { border-top: 1px solid #1a1a22; padding: 3rem 2rem; max-width: 820px; margin: 0 auto; text-align: center; }
-.contact-section h2 { font-size: 1.4rem; color: #f0f0f5; margin-bottom: .5rem; }
-.contact-section p { font-size: 13px; color: #777; margin-bottom: 1.5rem; }
-.contact-links { display: flex; justify-content: center; gap: .75rem; flex-wrap: wrap; }
+  /* ---------- HERO ---------- */
+  .hero{ padding: 84px 0 64px; }
+  .hero-grid{
+    display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items:center;
+  }
+  @media (max-width: 860px){ .hero-grid{ grid-template-columns: 1fr; gap: 40px; } }
 
-footer { border-top: 1px solid #151519; text-align: center; padding: 1.25rem 2rem; font-size: 11px; color: #444; }
-footer span { color: #7c6af7; }
+  .eyebrow{
+    font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-ink);
+    background: var(--accent-soft); display:inline-flex; align-items:center; gap:8px;
+    padding: 6px 12px; border-radius: 100px; margin-bottom: 20px; font-weight:500;
+  }
+  .eyebrow .blink{
+    width:6px; height:6px; border-radius:50%; background: var(--accent);
+    animation: blink 1.4s infinite;
+  }
+  @keyframes blink{ 0%,100%{opacity:1;} 50%{opacity:.25;} }
+
+  h1.name{
+    font-family: var(--font-display); font-weight:700;
+    font-size: clamp(2.1rem, 5vw, 3.4rem);
+    line-height: 1.08; letter-spacing: -0.01em;
+    margin-bottom: 14px;
+  }
+  .role-line{
+    font-family: var(--font-mono); color: var(--muted); font-size: 1.02rem; margin-bottom: 22px;
+  }
+  .role-line strong{ color: var(--ink); font-weight:600; }
+
+  .hero-desc{ color: var(--muted); max-width: 52ch; margin-bottom: 30px; font-size: 1.02rem; }
+
+  .cta-row{ display:flex; gap:12px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 12px 20px; border-radius: 8px; font-weight:600; font-size:0.92rem;
+    text-decoration:none; border: 1px solid transparent; cursor:pointer;
+    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    font-family: var(--font-body);
+  }
+  .btn-primary{ background: var(--accent); color:#fff; }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 8px 20px -8px rgba(47,111,78,0.55); }
+  .btn-ghost{ background: var(--surface); color: var(--ink); border-color: var(--border); }
+  .btn-ghost:hover{ transform: translateY(-2px); border-color: var(--accent); }
+
+  /* Terminal signature element */
+  .terminal{
+    background: var(--code-bg); border-radius: 12px; overflow:hidden;
+    box-shadow: 0 24px 48px -24px rgba(16,21,27,0.45);
+    font-family: var(--font-mono); font-size: 0.86rem;
+  }
+  .terminal-bar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 10px 16px; background: #171D25; color: var(--code-muted);
+    font-size: 0.75rem; letter-spacing: 0.02em;
+  }
+  .terminal-body{ padding: 20px 20px 24px; color: var(--code-ink); min-height: 210px; }
+  .term-line{ margin-bottom: 10px; white-space: pre-wrap; word-break: break-word; }
+  .prompt{ color: var(--accent); }
+  .path{ color: #6FB1E0; }
+  .out{ color: var(--code-muted); padding-left: 0; }
+  .cursor{
+    display:inline-block; width:8px; height:15px; background: var(--code-ink);
+    vertical-align: text-bottom; margin-left:2px; animation: blinkcur 1s steps(1) infinite;
+  }
+  @keyframes blinkcur{ 0%,49%{opacity:1;} 50%,100%{opacity:0;} }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding: 72px 0; border-top: 1px solid var(--border); }
+  section:first-of-type{ border-top:none; }
+  .section-head{ margin-bottom: 40px; max-width: 62ch; }
+  .section-label{
+    font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-ink);
+    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; display:block;
+  }
+  h2.section-title{
+    font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); font-weight:700;
+  }
+  .section-sub{ color: var(--muted); margin-top: 10px; font-size: 0.98rem; }
+
+  /* ---------- SOBRE ---------- */
+  .about-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  @media (max-width: 760px){ .about-grid{ grid-template-columns: 1fr; } }
+  .about-text p{ color: var(--ink); margin-bottom: 16px; font-size: 1rem; }
+  .about-text p:last-child{ margin-bottom:0; }
+
+  .fact-card{
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 22px; height: fit-content;
+  }
+  .fact-row{ display:flex; justify-content:space-between; gap:12px; padding: 12px 0; border-bottom: 1px dashed var(--border); font-size: 0.92rem; }
+  .fact-row:last-child{ border-bottom:none; padding-bottom:0; }
+  .fact-row:first-child{ padding-top:0; }
+  .fact-label{ color: var(--muted); font-family: var(--font-mono); font-size: 0.82rem; }
+  .fact-value{ font-weight:600; text-align:right; }
+
+  /* ---------- TECNOLOGIAS ---------- */
+  .tech-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 860px){ .tech-grid{ grid-template-columns: 1fr; } }
+  .tech-card{
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 24px;
+  }
+  .tech-card h3{
+    font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-ink);
+    margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .tag-list{ display:flex; flex-wrap:wrap; gap: 8px; }
+  .tag{
+    font-family: var(--font-mono); font-size: 0.82rem; color: var(--ink);
+    background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+    padding: 6px 10px; display:inline-flex; align-items:center; gap:6px;
+  }
+  .tag::before{ content: "›"; color: var(--accent); font-weight:700; }
+
+  /* ---------- PROJETOS ---------- */
+  .projects-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  @media (max-width: 900px){ .projects-grid{ grid-template-columns: 1fr; } }
+
+  .project-card{
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 26px; display:flex; flex-direction:column;
+  }
+  .project-kicker{
+    font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted);
+    margin-bottom: 10px; letter-spacing: 0.03em;
+  }
+  .project-card h3{ font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 10px; }
+  .project-card p{ color: var(--muted); font-size: 0.9rem; margin-bottom: 16px; flex-grow:1; }
+  .project-tags{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom: 18px; }
+  .project-actions{ display:flex; gap: 10px; flex-wrap:wrap; }
+  .project-link{
+    display:inline-flex; align-items:center; gap:6px; font-weight:600; font-size:0.85rem;
+    text-decoration:none; color: var(--accent-ink);
+  }
+  .project-link:hover{ text-decoration: underline; }
+  .demo-btn{
+    display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size: 0.85rem;
+    background: var(--ink); color:#fff; border:none; border-radius: 7px;
+    padding: 9px 14px; cursor:pointer; font-family: var(--font-body);
+    transition: transform .15s ease, background .15s ease;
+  }
+  .demo-btn:hover{ background: var(--accent); transform: translateY(-1px); }
+  .demo-btn svg{ width:13px; height:13px; }
+
+  .placeholder-card{
+    border: 1px dashed var(--border); background: transparent;
+  }
+  .placeholder-card h3{ color: var(--muted); }
+  .placeholder-tag{
+    font-family: var(--font-mono); font-size: 0.72rem; color: var(--gold);
+    background: var(--gold-soft); border-radius: 100px; padding: 4px 10px;
+    display:inline-block; margin-bottom: 14px; font-weight:600; letter-spacing: 0.03em;
+  }
+
+  .cta-band{
+    margin-top: 12px; background: var(--accent-soft); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 18px 22px; display:flex; align-items:center;
+    justify-content:space-between; gap: 16px; flex-wrap:wrap;
+  }
+  .cta-band p{ font-size: 0.92rem; color: var(--accent-ink); font-weight:500; }
+
+  /* ---------- MODAL DE DEMONSTRAÇÃO ---------- */
+  .demo-overlay{
+    position: fixed; inset: 0; background: rgba(16,21,27,0.6);
+    display:none; align-items:center; justify-content:center; padding: 20px; z-index: 1000;
+  }
+  .demo-overlay.open{ display:flex; }
+  .demo-modal{
+    background: var(--surface); border-radius: 14px; max-width: 480px; width:100%;
+    max-height: 88vh; overflow-y:auto; padding: 0; box-shadow: 0 30px 60px -20px rgba(16,21,27,0.5);
+  }
+  .demo-modal-head{
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding: 18px 22px; border-bottom: 1px solid var(--border);
+  }
+  .demo-modal-head h3{ font-family: var(--font-display); font-size: 1.05rem; }
+  .demo-close{
+    background: var(--bg); border: 1px solid var(--border); border-radius: 7px;
+    width: 32px; height:32px; cursor:pointer; font-size: 1rem; line-height:1; color: var(--ink);
+  }
+  .demo-close:hover{ border-color: var(--accent); }
+  .demo-modal-body{ padding: 22px; }
+  .demo-note{
+    font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted);
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 12px; margin-bottom: 18px; line-height:1.5;
+  }
+
+  /* mini apps */
+  .mini-app-row{ display:flex; gap: 8px; margin-bottom: 14px; }
+  .mini-input{
+    flex:1; padding: 10px 12px; border: 1px solid var(--border); border-radius: 7px;
+    font-family: var(--font-body); font-size: 0.9rem; background: var(--bg); color: var(--ink);
+  }
+  .mini-input:focus-visible{ outline: 2px solid var(--accent); outline-offset:1px; }
+  .mini-btn{
+    background: var(--accent); color:#fff; border:none; border-radius:7px;
+    padding: 10px 16px; font-weight:600; font-size: 0.85rem; cursor:pointer;
+  }
+  .mini-btn:hover{ background: var(--accent-ink); }
+  .mini-list{ list-style:none; display:flex; flex-direction:column; gap:8px; }
+  .mini-list li{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    border: 1px solid var(--border); border-radius: 7px; padding: 9px 12px; font-size:0.88rem;
+  }
+  .mini-list li.done span.task-text{ text-decoration:line-through; color: var(--muted); }
+  .mini-list button{
+    background:none; border:none; cursor:pointer; color: var(--muted); font-size: 0.9rem;
+  }
+  .mini-list button:hover{ color:#B4342E; }
+  .mini-empty{ color: var(--muted); font-size: 0.85rem; font-style:italic; }
+
+  .rps-choices{ display:flex; gap: 10px; margin-bottom: 18px; }
+  .rps-choice{
+    flex:1; padding: 14px 8px; border: 1px solid var(--border); border-radius: 9px;
+    background: var(--bg); cursor:pointer; font-size: 1.6rem; text-align:center;
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .rps-choice:hover{ border-color: var(--accent); transform: translateY(-2px); }
+  .rps-result{
+    text-align:center; padding: 14px; border-radius: 9px; background: var(--accent-soft);
+    color: var(--accent-ink); font-weight:600; font-size: 0.92rem; margin-bottom: 14px; min-height: 20px;
+  }
+  .rps-score{
+    display:flex; justify-content:space-around; font-family: var(--font-mono);
+    font-size: 0.82rem; color: var(--muted); border-top: 1px dashed var(--border); padding-top: 12px;
+  }
+  .rps-score strong{ color: var(--ink); font-size: 1rem; display:block; }
+
+  .stock-table{ width:100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 4px; }
+  .stock-table th{
+    text-align:left; font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted);
+    text-transform:uppercase; letter-spacing:0.04em; padding: 6px 8px; border-bottom: 1px solid var(--border);
+  }
+  .stock-table td{ padding: 8px; border-bottom: 1px solid var(--border); }
+  .stock-table td.qty{ font-family: var(--font-mono); }
+  .stock-table button{ background:none; border:none; cursor:pointer; color: var(--muted); }
+  .stock-table button:hover{ color:#B4342E; }
+  .stock-total{
+    display:flex; justify-content:space-between; margin-top: 12px; padding-top: 12px;
+    border-top: 1px dashed var(--border); font-size: 0.88rem; font-weight:600;
+  }
+
+  /* ---------- FORMAÇÃO / CERTIFICAÇÕES ---------- */
+  .timeline{ display:flex; flex-direction:column; gap: 0; }
+  .timeline-item{
+    display:grid; grid-template-columns: 140px 1fr; gap: 24px;
+    padding: 20px 0; border-bottom: 1px solid var(--border);
+  }
+  .timeline-item:last-child{ border-bottom:none; }
+  @media (max-width: 600px){ .timeline-item{ grid-template-columns: 1fr; gap: 6px; } }
+  .timeline-date{ font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted); }
+  .timeline-title{ font-weight:600; margin-bottom: 4px; }
+  .timeline-desc{ color: var(--muted); font-size: 0.9rem; }
+
+  .cert-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  @media (max-width: 700px){ .cert-grid{ grid-template-columns: 1fr; } }
+  .cert-card{
+    border: 1px solid var(--border); background: var(--surface); border-radius: var(--radius);
+    padding: 18px 20px; display:flex; justify-content:space-between; align-items:center; gap: 12px;
+  }
+  .cert-name{ font-weight:600; font-size: 0.95rem; }
+  .cert-hours{ font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-ink);
+    background: var(--accent-soft); padding: 4px 10px; border-radius: 100px; white-space:nowrap; }
+
+  /* ---------- CONTATO ---------- */
+  .contact-band{
+    background: var(--code-bg); color: var(--code-ink); border-radius: 16px;
+    padding: 56px 40px; text-align:center;
+  }
+  @media (max-width: 600px){ .contact-band{ padding: 40px 22px; } }
+  .contact-band h2{
+    font-family: var(--font-display); font-size: clamp(1.6rem, 4vw, 2.3rem); margin-bottom: 14px;
+  }
+  .contact-band p{ color: var(--code-muted); max-width: 46ch; margin: 0 auto 30px; }
+  .contact-links{ display:flex; gap: 14px; justify-content:center; flex-wrap:wrap; }
+  .contact-links a{
+    display:inline-flex; align-items:center; gap:8px; text-decoration:none;
+    padding: 12px 20px; border-radius: 8px; font-weight:600; font-size:0.92rem;
+    border: 1px solid #2A323C; color: var(--code-ink); transition: all .15s ease;
+  }
+  .contact-links a:hover{ border-color: var(--accent); background: rgba(47,111,78,0.15); transform: translateY(-2px); }
+  .contact-links a.primary{ background: var(--accent); border-color: var(--accent); color:#fff; }
+  .contact-links a.primary:hover{ background: #275f42; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ padding: 32px 0 48px; }
+  .footer-inner{
+    display:flex; justify-content:space-between; align-items:center; gap: 12px; flex-wrap:wrap;
+    font-size: 0.85rem; color: var(--muted); font-family: var(--font-mono);
+  }
+  .footer-inner a{ text-decoration:none; color: var(--muted); }
+  .footer-inner a:hover{ color: var(--accent-ink); }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="logo">lucas<span>.dev</span></div>
-  <ul>
-    <li><a href="#inicio">Início</a></li>
-    <li><a href="#sobre">Formação</a></li>
-    <li><a href="#projetos">Projetos</a></li>
-    <li><a href="#certificacoes">Cursos</a></li>
-    <li><a href="#contato" class="nav-cta">Contato</a></li>
-  </ul>
-</nav>
+<a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
 
-<section class="hero" id="inicio">
-  <div class="hero-tag">// Buscando Estágio em Desenvolvimento de Software</div>
-  <h1>Olá, eu sou <br><em>Lucas Braga Scudeler</em> 👋</h1>
-  <p>Estudante de <strong>Ciência da Computação</strong> na FIAP, focado em desenvolvimento de software com Python, C#, SQL e arquitetura de sistemas.</p>
-  <div class="hero-btns">
-    <a href="mailto:bragascudelerl@gmail.com" class="btn-primary">✉️ bragascudelerl@gmail.com</a>
-    <a href="https://github.com/scudelerlucasb-a11y" target="_blank" rel="noopener noreferrer" class="btn-ghost">GitHub</a>
-    <a href="https://www.linkedin.com/in/lucas-braga-scudeler-664826382" target="_blank" rel="noopener noreferrer" class="btn-ghost">LinkedIn</a>
-    <a href="https://docs.google.com/document/d/1RUfMaVo52DKROfFul9z3BvK0AfNrRRbZ/edit?usp=sharing&ouid=113924238036477733254&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer" class="btn-ghost">📄 Ver Currículo</a>
-  </div>
-</section>
-
-<div class="about-card" id="sobre">
-  <div class="about-inner">
-    <div class="about-item">
-      <h4>🎓 Formação Acadêmica</h4>
-      <p><strong>Bacharelado em Ciência da Computação</strong><br>
-      FIAP<br>
-      Previsão de Formatura: Julho/2028 (Em andamento)</p>
-    </div>
-    <div class="about-item">
-      <h4>🎯 Áreas de Interesse</h4>
-      <p>Desenvolvimento Backend, Lógica de Programação, Engenharia de Software, Modelagem & Gestão de Banco de Dados e Automação.</p>
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#topo" class="brand"><span class="dot" aria-hidden="true"></span>lucas.dev</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    <nav class="links" id="navLinks" aria-label="Navegação principal">
+      <a href="#sobre">Sobre</a>
+      <a href="#tecnologias">Tecnologias</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#formacao">Formação</a>
+      <a href="#certificacoes">Certificações</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div class="nav-icons">
+      <a class="icon-btn" href="https://github.com/scudelerlucasb-a11y" target="_blank" rel="noopener noreferrer" aria-label="Perfil no GitHub">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.98 5.24.98 11.52c0 5.02 3.26 9.28 7.78 10.78.57.1.78-.25.78-.55v-2c-3.17.69-3.84-1.53-3.84-1.53-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.24 3.33.95.1-.74.4-1.24.72-1.53-2.53-.29-5.19-1.27-5.19-5.63 0-1.25.44-2.27 1.17-3.07-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.17a10.9 10.9 0 0 1 5.72 0c2.18-1.48 3.14-1.17 3.14-1.17.62 1.57.23 2.73.11 3.02.73.8 1.17 1.82 1.17 3.07 0 4.37-2.67 5.33-5.21 5.62.41.35.77 1.04.77 2.11v3.13c0 .3.2.66.79.55A11.03 11.03 0 0 0 23.02 11.5C23.02 5.24 18.27.5 12 .5z"/></svg>
+      </a>
+      <a class="icon-btn" href="https://www.linkedin.com/in/lucas-braga-scudeler" target="_blank" rel="noopener noreferrer" aria-label="Perfil no LinkedIn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+      </a>
     </div>
   </div>
-</div>
+</header>
 
-<div class="stack-row">
-  <span class="badge">Python</span>
-  <span class="badge">C#</span>
-  <span class="badge">SQL / SQLite</span>
-  <span class="badge">Banco de Dados Relacional</span>
-  <span class="badge">FlutterFlow</span>
-  <span class="badge">Lógica & Algoritmos</span>
-  <span class="badge">Git / GitHub</span>
-  <span class="badge">Metodologias Ágeis</span>
-</div>
+<main id="conteudo">
 
-<div class="section-label" id="projetos">
-  <span>// projetos & estudos</span><hr>
-</div>
+  <!-- ================= HERO ================= -->
+  <section id="topo" class="hero" style="border-top:none;">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow"><span class="blink" aria-hidden="true"></span>Disponível para estágio</span>
+        <h1 class="name">Lucas Braga Scudeler</h1>
+        <p class="role-line">Estudante de <strong>Ciência da Computação</strong> — Faculdade Impacta · 2º semestre</p>
+        <p class="hero-desc">
+          Em busca de uma oportunidade de estágio em Tecnologia, com interesse em
+          <strong>Análise de Dados / Desenvolvedor Python</strong>. Venho construindo minha base em Python, C#, SQL e banco de dados,
+          e estou pronto para aplicar esse conhecimento em um time e continuar evoluindo na prática.
+        </p>
+        <div class="cta-row">
+          <a href="#projetos" class="btn btn-primary">Ver projetos</a>
+          <a href="#contato" class="btn btn-ghost">Vamos conversar?</a>
+        </div>
+      </div>
 
-<div class="projects-grid">
+      <div class="terminal" role="img" aria-label="Terminal simulando uma apresentação em linha de comando de Lucas Braga Scudeler">
+        <div class="terminal-bar"><span>portfolio.sh</span><span>zsh</span></div>
+        <div class="terminal-body">
+          <div class="term-line"><span class="prompt">$</span> whoami</div>
+          <div class="term-line out">lucas_braga_scudeler</div>
+          <div class="term-line"><span class="prompt">$</span> cat formacao.txt</div>
+          <div class="term-line out">Ciência da Computação — Faculdade Impacta<br>2º semestre, em andamento</div>
+          <div class="term-line"><span class="prompt">$</span> cat objetivo.txt</div>
+          <div class="term-line out">Estágio em Tecnologia · Análise de Dados / Dev Python<span class="cursor" aria-hidden="true"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <div class="project-card" onclick="openModal(0)">
-    <div class="project-thumb">📦<span class="gif-badge">ver detalhes</span></div>
-    <div class="project-body">
-      <h3>StockPy — Controle de Estoque</h3>
-      <p>Sistema de controle de estoque em Python integrado com SQLite, operações CRUD e geração de relatórios SQL.</p>
-      <div class="project-footer">
-        <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">SQLite</span><span class="project-tag">CRUD</span></div>
-        <span class="project-arrow">→</span>
+  <!-- ================= SOBRE ================= -->
+  <section id="sobre">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-label">01 · Quem sou</span>
+        <h2 class="section-title">Sobre mim</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            Sou o Lucas, estudante do 2º semestre de Ciência da Computação na Faculdade Impacta.
+            Estou no início da minha trajetória em tecnologia, construindo uma base sólida em lógica de
+            programação, banco de dados e boas práticas de desenvolvimento.
+          </p>
+          <p>
+            Meu principal interesse hoje está entre <strong>Análise de Dados</strong> e o desenvolvimento com
+            <strong>Python</strong>: gosto de entender como dados brutos podem ser organizados, tratados e
+            transformados em informação útil, e de programar a lógica que resolve esse tipo de problema.
+            Também pratico C#, o que me dá uma base mais ampla de raciocínio lógico e orientação a objetos.
+          </p>
+          <p>
+            Estou em busca de uma oportunidade de <strong>estágio na área de Tecnologia</strong> para aplicar o que
+            aprendi na faculdade e nos cursos que fiz, ganhar experiência prática em equipe e continuar evoluindo
+            como profissional.
+          </p>
+        </div>
+        <aside class="fact-card" aria-label="Dados rápidos">
+          <div class="fact-row"><span class="fact-label">CURSO</span><span class="fact-value">Ciência da Computação</span></div>
+          <div class="fact-row"><span class="fact-label">INSTITUIÇÃO</span><span class="fact-value">Faculdade Impacta</span></div>
+          <div class="fact-row"><span class="fact-label">SEMESTRE</span><span class="fact-value">2º — em andamento</span></div>
+          <div class="fact-row"><span class="fact-label">ÁREA DE INTERESSE</span><span class="fact-value">Análise de Dados / Dev Python</span></div>
+          <div class="fact-row"><span class="fact-label">OBJETIVO</span><span class="fact-value">Estágio em Tecnologia</span></div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TECNOLOGIAS ================= -->
+  <section id="tecnologias">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-label">02 · Stack atual</span>
+        <h2 class="section-title">Tecnologias e habilidades</h2>
+        <p class="section-sub">O que venho estudando e aplicando até aqui — sem inflar níveis, só o que domino na prática.</p>
+      </div>
+      <div class="tech-grid">
+        <div class="tech-card">
+          <h3>Linguagens</h3>
+          <div class="tag-list">
+            <span class="tag">Python</span>
+            <span class="tag">C#</span>
+            <span class="tag">SQL</span>
+          </div>
+        </div>
+        <div class="tech-card">
+          <h3>Banco de dados</h3>
+          <div class="tag-list">
+            <span class="tag">SQLite</span>
+            <span class="tag">Modelagem de dados</span>
+          </div>
+        </div>
+        <div class="tech-card">
+          <h3>Fundamentos</h3>
+          <div class="tag-list">
+            <span class="tag">Programação Orientada a Objetos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROJETOS ================= -->
+  <section id="projetos">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-label">03 · Prática</span>
+        <h2 class="section-title">Projetos</h2>
+        <p class="section-sub">Espaço reservado para os projetos que demonstram Python, SQL e banco de dados na prática — pronto para você preencher.</p>
+      </div>
+
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <span class="project-kicker">stock.py</span>
+          <h3>Controle de Estoque</h3>
+          <p>Script em Python para cadastrar produtos, controlar quantidades em estoque e remover itens — praticando lógica de programação, estruturas de dados e validação de entradas.</p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">CRUD</span>
+          </div>
+          <div class="project-actions">
+            <button class="demo-btn" data-demo="stock">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+              Ver em ação
+            </button>
+            <a class="project-link" href="https://github.com/scudelerlucasb-a11y" target="_blank" rel="noopener noreferrer">Código no GitHub →</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <span class="project-kicker">lista_de_tarefas.py</span>
+          <h3>Lista de Tarefas</h3>
+          <p>Aplicação de linha de comando para adicionar, concluir e remover tarefas — meu primeiro projeto organizando dados em memória e tratando as escolhas do usuário.</p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Lógica</span>
+          </div>
+          <div class="project-actions">
+            <button class="demo-btn" data-demo="todo">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+              Ver em ação
+            </button>
+            <a class="project-link" href="https://github.com/scudelerlucasb-a11y" target="_blank" rel="noopener noreferrer">Código no GitHub →</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <span class="project-kicker">jokenpo.py</span>
+          <h3>Pedra, Papel e Tesoura</h3>
+          <p>Jogo em Python contra o computador, com jogadas aleatórias e placar de vitórias — usado para praticar estruturas condicionais e a biblioteca random.</p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Random</span>
+          </div>
+          <div class="project-actions">
+            <button class="demo-btn" data-demo="rps">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+              Ver em ação
+            </button>
+            <a class="project-link" href="https://github.com/scudelerlucasb-a11y" target="_blank" rel="noopener noreferrer">Código no GitHub →</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="cta-band">
+        <p>Os códigos-fonte originais em Python de cada projeto ficam disponíveis no meu GitHub.</p>
+        <a class="btn btn-primary" href="https://github.com/scudelerlucasb-a11y" target="_blank" rel="noopener noreferrer">Ver repositórios no GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FORMAÇÃO ================= -->
+  <section id="formacao">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-label">04 · Trajetória</span>
+        <h2 class="section-title">Formação acadêmica</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-date">2025 — atual</span>
+          <div>
+            <div class="timeline-title">Ciência da Computação</div>
+            <div class="timeline-desc">Faculdade Impacta · 2º semestre, em andamento</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CERTIFICAÇÕES ================= -->
+  <section id="certificacoes">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="section-label">05 · Complementar</span>
+        <h2 class="section-title">Cursos e certificações</h2>
+      </div>
+      <div class="cert-grid">
+        <div class="cert-card">
+          <span class="cert-name">Trilha de Conhecimento — Linguagem de Programação Python</span>
+          <span class="cert-hours">53h</span>
+        </div>
+        <div class="cert-card">
+          <span class="cert-name">Administrando Banco de Dados</span>
+          <span class="cert-hours">15h</span>
+        </div>
+        <div class="cert-card">
+          <span class="cert-name">Desenvolvimento em Python — FIAP</span>
+          <span class="cert-hours">80h</span>
+        </div>
+        <div class="cert-card">
+          <span class="cert-name">Linguagem C# — SENAI</span>
+          <span class="cert-hours">60h</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTATO ================= -->
+  <section id="contato">
+    <div class="wrap">
+      <div class="contact-band">
+        <h2>Vamos conversar?</h2>
+        <p>Estou disponível para oportunidades de estágio em Tecnologia. Envie uma mensagem ou acompanhe meu trabalho nos links abaixo.</p>
+        <div class="contact-links">
+          <a class="primary" href="mailto:bragascudelerl@gmail.com">✉ E-mail</a>
+          <a href="https://www.linkedin.com/in/lucas-braga-scudeler" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/scudelerlucasb-a11y" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MODAL DE DEMONSTRAÇÃO ================= -->
+  <div class="demo-overlay" id="demoOverlay" role="dialog" aria-modal="true" aria-labelledby="demoTitle">
+    <div class="demo-modal">
+      <div class="demo-modal-head">
+        <h3 id="demoTitle">Demonstração</h3>
+        <button class="demo-close" id="demoClose" aria-label="Fechar demonstração">✕</button>
+      </div>
+      <div class="demo-modal-body" id="demoBody">
+        <!-- conteúdo injetado por JS -->
       </div>
     </div>
   </div>
 
-  <div class="project-card" onclick="openModal(1)">
-    <div class="project-thumb">🔤<span class="gif-badge">ver detalhes</span></div>
-    <div class="project-body">
-      <h3>Contador de Vogais</h3>
-      <p>Script em Python para contagem de vogais em strings, aplicando loops, condicionais e manipulação de texto.</p>
-      <div class="project-footer">
-        <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Strings</span></div>
-        <span class="project-arrow">→</span>
-      </div>
-    </div>
-  </div>
+</main>
 
-  <div class="project-card" onclick="openModal(2)">
-    <div class="project-thumb">🎮<span class="gif-badge">ver detalhes</span></div>
-    <div class="project-body">
-      <h3>Pedra, Papel e Tesoura</h3>
-      <p>Jogo interativo em Python utilizando lógica de decisão aleatória com a biblioteca random e verificação de resultados.</p>
-      <div class="project-footer">
-        <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Random</span></div>
-        <span class="project-arrow">→</span>
-      </div>
-    </div>
+<footer>
+  <div class="wrap footer-inner">
+    <span>© <span id="year"></span> Lucas Braga Scudeler</span>
+    <a href="#topo">Voltar ao topo ↑</a>
   </div>
-
-</div>
-
-<div class="section-label" id="certificacoes">
-  <span>// cursos & certificações</span><hr>
-</div>
-
-<div class="cert-grid">
-  <div class="cert-card">
-    <h3>Python Development (80h)</h3>
-    <div class="cert-issuer">FIAP • Jun 2026</div>
-    <p>Nano Course com foco na linguagem Python, lógica de programação avançada e desenvolvimento de software.</p>
-  </div>
-  <div class="cert-card">
-    <h3>Linguagem de Programação C# (60h)</h3>
-    <div class="cert-issuer">SENAI "Roberto Simonsen"</div>
-    <p>Formação em fundamentos da linguagem C# e Orientação a Objetos.</p>
-  </div>
-  <div class="cert-card">
-    <h3>Administrando Banco de Dados</h3>
-    <div class="cert-issuer">Fundação Bradesco • Jun 2026</div>
-    <p>Treinamento prático voltado para bancos de dados relacionais, modelagem e linguagem SQL.</p>
-  </div>
-  <div class="cert-card">
-    <h3>Linguagem de Programação Python</h3>
-    <div class="cert-issuer">Fundação Bradesco • Mar 2026</div>
-    <p>Fundamentos da linguagem Python, controle de fluxo e manipulação de dados.</p>
-  </div>
-</div>
-
-<!-- MODAL -->
-<div class="modal-overlay" id="modal" onclick="closeModal(event)">
-  <div class="modal">
-    <div class="modal-preview">
-      <button class="modal-close" onclick="closeModalDirect()">✕</button>
-      <span id="modal-icon"></span>
-    </div>
-    <div class="modal-content">
-      <h2 id="modal-title"></h2>
-      <p class="modal-desc" id="modal-desc"></p>
-      <div class="modal-meta">
-        <div class="meta-item"><div class="meta-label">// FOCO TÉCNICO</div><div class="meta-val" id="modal-status"></div></div>
-        <div class="meta-item"><div class="meta-label">// LINGUAGEM / BANCO</div><div class="meta-val" id="modal-type"></div></div>
-      </div>
-      <div class="modal-tags" id="modal-tags"></div>
-      <div class="modal-actions">
-        <a id="modal-github" href="#" class="btn-github" target="_blank" rel="noopener noreferrer">Ver Código no GitHub →</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="contact-section" id="contato">
-  <h2>Vamos conversar?</h2>
-  <p>Estou em busca da minha primeira oportunidade de estágio para aprender e agregar valor à sua equipe.</p>
-  <div class="contact-links">
-    <a href="mailto:bragascudelerl@gmail.com" class="btn-primary">✉️ bragascudelerl@gmail.com</a>
-    <a href="https://github.com/scudelerlucasb-a11y" target="_blank" rel="noopener noreferrer" class="btn-ghost">GitHub</a>
-    <a href="https://www.linkedin.com/in/lucas-braga-scudeler-664826382" target="_blank" rel="noopener noreferrer" class="btn-ghost">LinkedIn</a>
-  </div>
-</div>
-
-<footer>Desenvolvido por Lucas Braga Scudeler — Estudante de Ciência da Computação</footer>
+</footer>
 
 <script>
-const projects = [
-  {
-    icon: '📦',
-    title: 'StockPy — Controle de Estoque',
-    desc: 'Sistema completo de controle de estoque em Python integrado ao banco de dados SQLite. Possui operações completas de CRUD (Create, Read, Update, Delete), validação de regras de negócio e relatórios via SQL.',
-    status: 'Persistência & CRUD',
-    type: 'Python 3 / SQLite',
-    tags: ['Python', 'SQLite', 'CRUD', 'SQL'],
-    github: 'https://github.com/scudelerlucasb-a11y/StockPy'
-  },
-  {
-    icon: '🔤',
-    title: 'Contador de Vogais',
-    desc: 'Script focado em algoritmos de busca e manipulação de texto. Realiza contagem eficiente de caracteres em strings aplicando estruturas de repetição e condicionais.',
-    status: 'Algoritmos & Strings',
-    type: 'Python 3',
-    tags: ['Python', 'Strings', 'Lógica', 'Loops'],
-    github: 'https://github.com/scudelerlucasb-a11y/contador-de-vogais/'
-  },
-  {
-    icon: '🎮',
-    title: 'Pedra, Papel e Tesoura',
-    desc: 'Jogo interativo que implementa árvores de decisão simples e simulação de opções aleatórias com a biblioteca random do Python.',
-    status: 'Estruturas de Controle',
-    type: 'Python 3',
-    tags: ['Python', 'Random', 'Condicionais', 'Jogo'],
-    github: 'https://github.com/scudelerlucasb-a11y/Jogo-de-pedra-papel-e-tesoura/'
-  }
-];
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-function openModal(i) {
-  const p = projects[i];
-  document.getElementById('modal-icon').textContent = p.icon;
-  document.getElementById('modal-title').textContent = p.title;
-  document.getElementById('modal-desc').textContent = p.desc;
-  document.getElementById('modal-status').textContent = p.status;
-  document.getElementById('modal-type').textContent = p.type;
-  document.getElementById('modal-github').href = p.github;
-  document.getElementById('modal-tags').innerHTML = p.tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
-  document.getElementById('modal').classList.add('open');
-}
-function closeModal(e) { if (e.target.id === 'modal') closeModalDirect(); }
-function closeModalDirect() { document.getElementById('modal').classList.remove('open'); }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  /* ================= MODAL DE DEMONSTRAÇÃO ================= */
+  const overlay = document.getElementById('demoOverlay');
+  const demoTitle = document.getElementById('demoTitle');
+  const demoBody = document.getElementById('demoBody');
+  const demoClose = document.getElementById('demoClose');
+  let lastFocused = null;
+
+  const demoNote = 'Demonstração interativa reimplementada em JavaScript para rodar direto no navegador. O código-fonte original em Python está no repositório do GitHub.';
+
+  function openDemo(kind){
+    lastFocused = document.activeElement;
+    if(kind === 'todo'){ demoTitle.textContent = 'Lista de Tarefas — em ação'; renderTodo(); }
+    if(kind === 'rps'){ demoTitle.textContent = 'Pedra, Papel e Tesoura — em ação'; renderRps(); }
+    if(kind === 'stock'){ demoTitle.textContent = 'Controle de Estoque — em ação'; renderStock(); }
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    demoClose.focus();
+  }
+
+  function closeDemo(){
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    demoBody.innerHTML = '';
+    if(lastFocused) lastFocused.focus();
+  }
+
+  demoClose.addEventListener('click', closeDemo);
+  overlay.addEventListener('click', (e) => { if(e.target === overlay) closeDemo(); });
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && overlay.classList.contains('open')) closeDemo(); });
+
+  document.querySelectorAll('[data-demo]').forEach(btn => {
+    btn.addEventListener('click', () => openDemo(btn.getAttribute('data-demo')));
+  });
+
+  /* ---- Lista de Tarefas ---- */
+  let todoItems = [
+    { text: 'Estudar SQL', done: false },
+    { text: 'Enviar portfólio', done: true }
+  ];
+
+  function renderTodo(){
+    demoBody.innerHTML = `
+      <p class="demo-note">${demoNote}</p>
+      <div class="mini-app-row">
+        <input type="text" class="mini-input" id="todoInput" placeholder="Adicionar nova tarefa..." maxlength="60">
+        <button class="mini-btn" id="todoAddBtn">Adicionar</button>
+      </div>
+      <ul class="mini-list" id="todoList"></ul>
+    `;
+    paintTodo();
+    document.getElementById('todoAddBtn').addEventListener('click', addTodo);
+    document.getElementById('todoInput').addEventListener('keydown', (e) => { if(e.key === 'Enter') addTodo(); });
+  }
+
+  function addTodo(){
+    const input = document.getElementById('todoInput');
+    const value = input.value.trim();
+    if(!value) return;
+    todoItems.push({ text: value, done: false });
+    input.value = '';
+    paintTodo();
+  }
+
+  function paintTodo(){
+    const list = document.getElementById('todoList');
+    if(todoItems.length === 0){
+      list.innerHTML = '<li class="mini-empty">Nenhuma tarefa cadastrada.</li>';
+      return;
+    }
+    list.innerHTML = todoItems.map((item, i) => `
+      <li class="${item.done ? 'done' : ''}">
+        <label style="display:flex; align-items:center; gap:10px; cursor:pointer;">
+          <input type="checkbox" data-i="${i}" class="todoCheck" ${item.done ? 'checked' : ''}>
+          <span class="task-text">${item.text.replace(/</g,'&lt;')}</span>
+        </label>
+        <button data-i="${i}" class="todoDel" aria-label="Remover tarefa">✕</button>
+      </li>
+    `).join('');
+    list.querySelectorAll('.todoCheck').forEach(cb => {
+      cb.addEventListener('change', () => { todoItems[+cb.dataset.i].done = cb.checked; paintTodo(); });
+    });
+    list.querySelectorAll('.todoDel').forEach(btn => {
+      btn.addEventListener('click', () => { todoItems.splice(+btn.dataset.i, 1); paintTodo(); });
+    });
+  }
+
+  /* ---- Pedra, Papel e Tesoura ---- */
+  let rpsScore = { win: 0, lose: 0, draw: 0 };
+  const rpsOptions = { pedra: '✊', papel: '✋', tesoura: '✌️' };
+  const rpsBeats = { pedra: 'tesoura', papel: 'pedra', tesoura: 'papel' };
+
+  function renderRps(){
+    demoBody.innerHTML = `
+      <p class="demo-note">${demoNote}</p>
+      <div class="rps-choices">
+        ${Object.entries(rpsOptions).map(([key, emoji]) => `
+          <button class="rps-choice" data-choice="${key}" aria-label="Jogar ${key}">${emoji}</button>
+        `).join('')}
+      </div>
+      <div class="rps-result" id="rpsResult" aria-live="polite">Escolha sua jogada.</div>
+      <div class="rps-score">
+        <div>Vitórias<strong id="rpsWin">${rpsScore.win}</strong></div>
+        <div>Empates<strong id="rpsDraw">${rpsScore.draw}</strong></div>
+        <div>Derrotas<strong id="rpsLose">${rpsScore.lose}</strong></div>
+      </div>
+    `;
+    demoBody.querySelectorAll('.rps-choice').forEach(btn => {
+      btn.addEventListener('click', () => playRps(btn.dataset.choice));
+    });
+  }
+
+  function playRps(playerChoice){
+    const keys = Object.keys(rpsOptions);
+    const cpuChoice = keys[Math.floor(Math.random() * keys.length)];
+    const resultEl = document.getElementById('rpsResult');
+    let outcome;
+    if(playerChoice === cpuChoice){ outcome = 'draw'; rpsScore.draw++; }
+    else if(rpsBeats[playerChoice] === cpuChoice){ outcome = 'win'; rpsScore.win++; }
+    else { outcome = 'lose'; rpsScore.lose++; }
+
+    const msgs = {
+      win: `Você jogou ${rpsOptions[playerChoice]} e o computador jogou ${rpsOptions[cpuChoice]} — você venceu!`,
+      lose: `Você jogou ${rpsOptions[playerChoice]} e o computador jogou ${rpsOptions[cpuChoice]} — você perdeu.`,
+      draw: `Ambos jogaram ${rpsOptions[playerChoice]} — empate!`
+    };
+    resultEl.textContent = msgs[outcome];
+    document.getElementById('rpsWin').textContent = rpsScore.win;
+    document.getElementById('rpsDraw').textContent = rpsScore.draw;
+    document.getElementById('rpsLose').textContent = rpsScore.lose;
+  }
+
+  /* ---- Controle de Estoque ---- */
+  let stockItems = [
+    { name: 'Teclado mecânico', qty: 12 },
+    { name: 'Mouse óptico', qty: 30 }
+  ];
+
+  function renderStock(){
+    demoBody.innerHTML = `
+      <p class="demo-note">${demoNote}</p>
+      <div class="mini-app-row">
+        <input type="text" class="mini-input" id="stockName" placeholder="Nome do produto" maxlength="40" style="flex:2;">
+        <input type="number" class="mini-input" id="stockQty" placeholder="Qtd." min="1" style="flex:1;">
+        <button class="mini-btn" id="stockAddBtn">Adicionar</button>
+      </div>
+      <table class="stock-table">
+        <thead><tr><th>Produto</th><th>Qtd.</th><th></th></tr></thead>
+        <tbody id="stockBody"></tbody>
+      </table>
+      <div class="stock-total"><span>Total em estoque</span><span id="stockTotal">0</span></div>
+    `;
+    paintStock();
+    document.getElementById('stockAddBtn').addEventListener('click', addStock);
+  }
+
+  function addStock(){
+    const nameInput = document.getElementById('stockName');
+    const qtyInput = document.getElementById('stockQty');
+    const name = nameInput.value.trim();
+    const qty = parseInt(qtyInput.value, 10);
+    if(!name || !qty || qty <= 0) return;
+    stockItems.push({ name, qty });
+    nameInput.value = '';
+    qtyInput.value = '';
+    paintStock();
+  }
+
+  function paintStock(){
+    const body = document.getElementById('stockBody');
+    if(stockItems.length === 0){
+      body.innerHTML = '<tr><td colspan="3" class="mini-empty">Nenhum produto cadastrado.</td></tr>';
+    } else {
+      body.innerHTML = stockItems.map((item, i) => `
+        <tr>
+          <td>${item.name.replace(/</g,'&lt;')}</td>
+          <td class="qty">${item.qty}</td>
+          <td><button data-i="${i}" class="stockDel" aria-label="Remover produto">✕</button></td>
+        </tr>
+      `).join('');
+    }
+    document.getElementById('stockTotal').textContent = stockItems.reduce((sum, i) => sum + i.qty, 0);
+    body.querySelectorAll('.stockDel').forEach(btn => {
+      btn.addEventListener('click', () => { stockItems.splice(+btn.dataset.i, 1); paintStock(); });
+    });
+  }
 </script>
 
 </body>
