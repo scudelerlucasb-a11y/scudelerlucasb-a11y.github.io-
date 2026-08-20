@@ -11,19 +11,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #F6F7F9;
-    --surface: #FFFFFF;
-    --ink: #10151B;
-    --muted: #5B6472;
-    --border: #E3E6EB;
-    --accent: #2F6F4E;
-    --accent-ink: #1F4F37;
-    --accent-soft: #E7F0EA;
-    --gold: #B8862F;
-    --gold-soft: #FBF2E1;
-    --code-bg: #10151B;
-    --code-ink: #E8EBEF;
-    --code-muted: #8B95A3;
+    --bg: #0D1117;
+    --surface: #161B22;
+    --ink: #E6EDF3;
+    --muted: #8B949E;
+    --border: #2B323C;
+    --accent: #3ECF8E;
+    --accent-ink: #6FE3AC;
+    --on-accent: #06231A;
+    --accent-soft: rgba(62,207,142,0.12);
+    --gold: #E3B341;
+    --gold-soft: rgba(227,179,65,0.12);
+    --code-bg: #05070A;
+    --code-ink: #E6EDF3;
+    --code-muted: #7D8590;
     --radius: 10px;
     --maxw: 1080px;
     --font-display: 'Space Grotesk', sans-serif;
@@ -66,7 +67,7 @@
 
   .skip-link{
     position:absolute; left:-9999px; top:0;
-    background: var(--accent); color:#fff; padding:10px 16px;
+    background: var(--accent); color: var(--on-accent); padding:10px 16px;
     z-index: 999; border-radius: 0 0 6px 0;
     font-family: var(--font-mono); font-size: 0.85rem;
   }
@@ -75,7 +76,7 @@
   /* ---------- NAVBAR ---------- */
   header.nav{
     position: sticky; top:0; z-index: 100;
-    background: rgba(246,247,249,0.9);
+    background: rgba(13,17,23,0.88);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border);
   }
@@ -160,8 +161,8 @@
     transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
     font-family: var(--font-body);
   }
-  .btn-primary{ background: var(--accent); color:#fff; }
-  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 8px 20px -8px rgba(47,111,78,0.55); }
+  .btn-primary{ background: var(--accent); color: var(--on-accent); }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 8px 20px -8px rgba(62,207,142,0.35); filter: brightness(1.05); }
   .btn-ghost{ background: var(--surface); color: var(--ink); border-color: var(--border); }
   .btn-ghost:hover{ transform: translateY(-2px); border-color: var(--accent); }
 
@@ -217,8 +218,7 @@
   .fact-value{ font-weight:600; text-align:right; }
 
   /* ---------- TECNOLOGIAS ---------- */
-  .tech-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  @media (max-width: 860px){ .tech-grid{ grid-template-columns: 1fr; } }
+  .tech-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; }
   .tech-card{
     background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
     padding: 24px;
@@ -236,8 +236,7 @@
   .tag::before{ content: "›"; color: var(--accent); font-weight:700; }
 
   /* ---------- PROJETOS ---------- */
-  .projects-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-  @media (max-width: 900px){ .projects-grid{ grid-template-columns: 1fr; } }
+  .projects-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 22px; }
 
   .project-card{
     background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
@@ -258,11 +257,11 @@
   .project-link:hover{ text-decoration: underline; }
   .demo-btn{
     display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size: 0.85rem;
-    background: var(--ink); color:#fff; border:none; border-radius: 7px;
+    background: var(--accent); color: var(--on-accent); border:none; border-radius: 7px;
     padding: 9px 14px; cursor:pointer; font-family: var(--font-body);
-    transition: transform .15s ease, background .15s ease;
+    transition: transform .15s ease, filter .15s ease;
   }
-  .demo-btn:hover{ background: var(--accent); transform: translateY(-1px); }
+  .demo-btn:hover{ filter: brightness(1.08); transform: translateY(-1px); }
   .demo-btn svg{ width:13px; height:13px; }
 
   .placeholder-card{
@@ -317,10 +316,10 @@
   }
   .mini-input:focus-visible{ outline: 2px solid var(--accent); outline-offset:1px; }
   .mini-btn{
-    background: var(--accent); color:#fff; border:none; border-radius:7px;
+    background: var(--accent); color: var(--on-accent); border:none; border-radius:7px;
     padding: 10px 16px; font-weight:600; font-size: 0.85rem; cursor:pointer;
   }
-  .mini-btn:hover{ background: var(--accent-ink); }
+  .mini-btn:hover{ filter: brightness(1.08); }
   .mini-list{ list-style:none; display:flex; flex-direction:column; gap:8px; }
   .mini-list li{
     display:flex; align-items:center; justify-content:space-between; gap:10px;
@@ -400,11 +399,11 @@
   .contact-links a{
     display:inline-flex; align-items:center; gap:8px; text-decoration:none;
     padding: 12px 20px; border-radius: 8px; font-weight:600; font-size:0.92rem;
-    border: 1px solid #2A323C; color: var(--code-ink); transition: all .15s ease;
+    border: 1px solid var(--border); color: var(--code-ink); transition: all .15s ease;
   }
-  .contact-links a:hover{ border-color: var(--accent); background: rgba(47,111,78,0.15); transform: translateY(-2px); }
-  .contact-links a.primary{ background: var(--accent); border-color: var(--accent); color:#fff; }
-  .contact-links a.primary:hover{ background: #275f42; }
+  .contact-links a:hover{ border-color: var(--accent); background: rgba(62,207,142,0.1); transform: translateY(-2px); }
+  .contact-links a.primary{ background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .contact-links a.primary:hover{ filter: brightness(1.08); }
 
   /* ---------- FOOTER ---------- */
   footer{ padding: 32px 0 48px; }
@@ -544,6 +543,12 @@
             <span class="tag">Programação Orientada a Objetos</span>
           </div>
         </div>
+        <div class="tech-card">
+          <h3>Mobile / No-code</h3>
+          <div class="tag-list">
+            <span class="tag">FlutterFlow</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -607,6 +612,21 @@
               Ver em ação
             </button>
             <a class="project-link" href="https://github.com/scudelerlucasb-a11y" target="_blank" rel="noopener noreferrer">Código no GitHub →</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <span class="project-kicker">SaborLocal</span>
+          <h3>SaborLocal — App de restaurantes</h3>
+          <p>Plataforma de delivery inspirada no iFood, desenvolvida no FlutterFlow. Projeto usado para praticar construção de interfaces mobile e lógica em Flutter/Dart de forma visual.</p>
+          <div class="project-tags">
+            <span class="tag">Flutter</span>
+            <span class="tag">Dart</span>
+            <span class="tag">FlutterFlow</span>
+            <span class="tag">Mobile</span>
+          </div>
+          <div class="project-actions">
+            <a class="project-link" href="https://github.com/scudelerlucasb-a11y/SaborLocal" target="_blank" rel="noopener noreferrer">Código no GitHub →</a>
           </div>
         </div>
 
@@ -904,6 +924,7 @@
       btn.addEventListener('click', () => { stockItems.splice(+btn.dataset.i, 1); paintStock(); });
     });
   }
+
 </script>
 
 </body>
